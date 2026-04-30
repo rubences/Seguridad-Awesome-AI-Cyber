@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     net-tools \
     curl \
     git \
+    httpx \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -33,6 +34,7 @@ COPY Awesome-AI-Cyber /app/Awesome-AI-Cyber
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 RUN pip3 install --no-cache-dir -r /app/Awesome-AI-Cyber/requirements.txt
+RUN pip3 install --no-cache-dir paramspider dirsearch
 
 # Environment variables
 ENV PYTHONUTF8=1

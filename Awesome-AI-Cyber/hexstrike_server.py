@@ -18,6 +18,9 @@ TOOLS = {
     'nuclei': 'nuclei',
     'nikto': 'nikto',
     'ffuf': 'ffuf',
+    'httpx': 'httpx',
+    'paramspider': 'paramspider',
+    'dirsearch': 'dirsearch',
 }
 
 
@@ -115,6 +118,10 @@ def execute_tool(tool_name):
         cmd = ['httpx', '-u', target]
     elif tool_name == 'paramspider':
         cmd = ['paramspider', '-d', target]
+    elif tool_name == 'dirsearch':
+        cmd = ['dirsearch', '-u', target]
+        if params.get('extensions'):
+            cmd += ['-e', params['extensions']]
     else:
         return jsonify({'success': False, 'error': f'No command mapping for tool {tool_name}.'}), 500
 

@@ -11,7 +11,7 @@ def list_tools():
     """List common Awesome-AI-Cyber tools available via API"""
     tools = [
         "nmap", "gobuster", "sqlmap", "nuclei", "nikto", 
-        "ffuf"
+        "ffuf", "httpx", "paramspider", "dirsearch"
     ]
     print("\n[bold]Available Awesome-AI-Cyber Tools (Supported):[/bold]")
     for tool in tools:
