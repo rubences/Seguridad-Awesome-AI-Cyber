@@ -11,13 +11,12 @@ def list_tools():
     """List common Awesome-AI-Cyber tools available via API"""
     tools = [
         "nmap", "gobuster", "sqlmap", "nuclei", "nikto", 
-        "burpsuite", "burpsuite-alternative", "httpx", 
-        "paramspider", "ffuf", "dirsearch"
+        "ffuf"
     ]
-    print("\n[bold]Available Awesome-AI-Cyber Tools (Common):[/bold]")
+    print("\n[bold]Available Awesome-AI-Cyber Tools (Supported):[/bold]")
     for tool in tools:
         print(f" - {tool}")
-    print("\n[info]Note: Awesome-AI-Cyber supports 150+ tools via generic command execution.[/info]")
+    print("\n[info]Note: Awesome-AI-Cyber supports these core tools via the local server API.[/info]")
 
 def call_tool(tool_name: str, params: Dict[str, Any]):
     """Execute a tool via Awesome-AI-Cyber API"""
