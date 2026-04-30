@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.log
+.env
+Awesome-AI-Cyber/.git/
+ollama_data/
+chroma_data/

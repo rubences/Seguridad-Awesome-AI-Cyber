@@ -1,0 +1,45 @@
+FROM kalilinux/kali-rolling
+
+# Avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install core tools
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    python3-dev \
+    build-essential \
+    nmap \
+    sqlmap \
+    nuclei \
+    ffuf \
+    gobuster \
+    nikto \
+    whois \
+    dnsutils \
+    net-tools \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy Awesome-AI-Cyber code
+COPY Awesome-AI-Cyber /app/Awesome-AI-Cyber
+
+# Install Python requirements
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+RUN pip3 install --no-cache-dir -r /app/Awesome-AI-Cyber/requirements.txt
+
+# Environment variables
+ENV PYTHONUTF8=1
+ENV FLASK_APP=/app/Awesome-AI-Cyber/hexstrike_server.py
+
+# Expose Awesome-AI-Cyber port
+EXPOSE 8888
+
+# Command to run the server
+CMD ["python3", "/app/Awesome-AI-Cyber/hexstrike_server.py"]

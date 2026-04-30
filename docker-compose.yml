@@ -1,0 +1,30 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: awesome_ai_cyber_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama_data:/root/.ollama
+    restart: always
+
+  awesome_ai_cyber:
+    build:
+      context: .
+      dockerfile: Dockerfile.awesome_ai_cyber
+    container_name: awesome_ai_cyber_server
+    ports:
+      - "8888:8888"
+    depends_on:
+      - ollama
+      - chromadb
+    restart: always
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: awesome_ai_cyber_chroma
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./chroma_data:/chroma/chroma
+    restart: always
